@@ -3,7 +3,7 @@ import React from "react";
 
 
 
-function SearchSection({onSearchInput}:any) {
+function SearchSection({onSearchInput}) {
   return (
     <div className=" rounded-lg flex-col p-10 bg-blue-700  flex justify-center items-center  ">
       <h2 className="text-3xl font-bold text-white ">Browse All Templates</h2>
