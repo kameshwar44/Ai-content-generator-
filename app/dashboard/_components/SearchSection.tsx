@@ -1,16 +1,19 @@
 import { Search } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-interface SearchSectionProps {
-  onSearchInput: (value: string) => void;
-}
+function SearchSection() {
+  const [searchTerm, setSearchTerm] = useState('');
 
-function SearchSection({ onSearchInput }: SearchSectionProps) {
+  const onSearchInput = (value: string) => {
+    setSearchTerm(value);
+    // Add any additional search logic here
+  };
+
   return (
-    <div className="rounded-lg flex-col p-10 bg-blue-700 flex justify-center items-center">
-      <h2 className="text-3xl font-bold text-white">Browse All Templates</h2>
+    <div className=" rounded-lg flex-col p-10 bg-blue-700  flex justify-center items-center  ">
+      <h2 className="text-3xl font-bold text-white ">Browse All Templates</h2>
       <p className="text-lg text-white mt-3">
-        What template are you looking for?
+        What template are you looking for ?
       </p>
 
       <div>
@@ -20,6 +23,7 @@ function SearchSection({ onSearchInput }: SearchSectionProps) {
             onChange={(e) => onSearchInput(e.target.value)}
             className="bg-transparent outline-none"
             type="text"
+            value={searchTerm}
             placeholder="Search"
           />
         </div>
