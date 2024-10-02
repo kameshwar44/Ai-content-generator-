@@ -27,15 +27,14 @@ function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) 
     // Ensure Templates is of type TEMPLATE[]
     const typedTemplates: TEMPLATE[] = Templates.map(template => ({
       ...template,
-      description: template.desc || '',
-      image: template.image || ''
+      description: template.desc || '', // Map desc to description
+      image: template.image || ''       // Ensure image is set
     }));
 
     setTemplatesList(typedTemplates);
   }, []);
 
   useEffect(() => {
-    console.log(templatesList);
     if (userSearchInput) {
       const filteredList = templatesList.filter((item: TEMPLATE) =>
         item.name.toLowerCase().includes(userSearchInput.toLowerCase())
@@ -45,12 +44,12 @@ function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) 
       // Reset to the original list when there's no search input
       const typedTemplates: TEMPLATE[] = Templates.map(template => ({
         ...template,
-        description: template.desc || '',
-        image: template.image || ''
+        description: template.desc || '', // Ensure description is set
+        image: template.image || ''       // Ensure image is set
       }));
       setTemplatesList(typedTemplates);
     }
-  }, [userSearchInput]);
+  }, [userSearchInput, templatesList]);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
