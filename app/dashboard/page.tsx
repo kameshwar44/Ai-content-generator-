@@ -3,16 +3,15 @@ import React, { useState } from 'react'
 import SearchSection from './_components/SearchSection'
 import TemplateListSection from './_components/TemplateListSection'
 
+function Page() {
+  const [userSearchInput, setUserSearchInput] = useState<string>('')
 
-
-function page({onSearchInput}) {
-  const [userSearchInput, setUserSearchInput] = useState<string>()
   return (
     <div className='p-3'>
-    <SearchSection onSearchInput={(value:string) => setUserSearchInput(value)} />
-    <TemplateListSection  userSearchInput={userSearchInput}/>
+      <SearchSection onSearchInput={(value: string) => setUserSearchInput(value)} />
+      <TemplateListSection userSearchInput={userSearchInput} />
     </div>
   )
 }
 
-export default page
+export default Page
