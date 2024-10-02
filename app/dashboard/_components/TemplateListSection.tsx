@@ -26,7 +26,7 @@ function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) 
   useEffect(() => {
     console.log(templatesList);
     if (userSearchInput) {
-      const filteredList = Templates.filter((item) =>
+      const filteredList = Templates.filter((item: typeof Templates[0]) =>
         item.name.toLowerCase().includes(userSearchInput.toLowerCase())
       );
       setTemplatesList(filteredList);
