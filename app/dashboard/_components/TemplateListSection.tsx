@@ -20,28 +20,26 @@ export interface FORM {
   required?: boolean;
 }
 
-function TemplateListSection({userSearchInput}:any) {
+function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) {
+  const [templatesList, setTemplatesList] = useState<typeof Templates>(Templates);
 
-
-  const [templatesList, setTemplatesList] = useState(Templates)
-
-useEffect(() => {
-  console.log(templatesList)
-  if(userSearchInput){
-    const filteredList = Templates.filter((item:TEMPLATE) => item.name.toLowerCase().includes(userSearchInput.toLowerCase()))
-    setTemplatesList(filteredList)
-  }
-  else{
-    setTemplatesList(Templates)
-  }
-
-}, [userSearchInput])
+  useEffect(() => {
+    console.log(templatesList);
+    if (userSearchInput) {
+      const filteredList = Templates.filter((item) =>
+        item.name.toLowerCase().includes(userSearchInput.toLowerCase())
+      );
+      setTemplatesList(filteredList);
+    } else {
+      setTemplatesList(Templates);
+    }
+  }, [userSearchInput]);
 
   return (
-    
-    <div className="  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
-      {templatesList.map((item: TEMPLATE, index: number) => (
-        <TemplateCard key={index} {...item} /> ))}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
+      {templatesList.map((item, index) => (
+        <TemplateCard key={index} {...item} />
+      ))}
     </div>
   );
 }
