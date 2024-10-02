@@ -9,7 +9,7 @@ function Dashboard() {
   const [userSearchInput, setUserSearchInput] = useState<string>()
   return (
     <div className='p-3'>
-    <SearchSection onSearchInput={(value:string) => setUserSearchInput(value)} />
+    <SearchSection onSearchInput={(value: string) => setUserSearchInput(value)} />
     <TemplateListSection  userSearchInput={userSearchInput}/>
     </div>
   )

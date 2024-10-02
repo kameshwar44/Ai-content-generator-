@@ -30,11 +30,9 @@ interface PROPS {
  * @returns 
  */
 
-
-
 function CreateNewContent(props: PROPS) {
   const router = useRouter();
-  const { totalUsage } = useContext(TotalUsageContext);
+  const totalUsage = useContext(TotalUsageContext);
   const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
 
   const selectedTemplate = Templates.find(
