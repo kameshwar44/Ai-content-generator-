@@ -41,7 +41,14 @@ useEffect(() => {
   return (
     
     <div className="  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
-      {templatesList.map((item,index) => ( <TemplateCard  {...item} key={index} /> ))}
+      {templatesList.map((item, index) => (
+        <TemplateCard
+          {...item}
+          description={item.desc} // Map 'desc' to 'description'
+          image={item.icon} // Use 'icon' as 'image'
+          key={index}
+        />
+      ))}
     </div>
   );
 }

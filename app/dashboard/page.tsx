@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 import SearchSection from './_components/SearchSection';
 import TemplateListSection from './_components/TemplateListSection';
 
-function Page({ onSearchInput }: { onSearchInput: (value: string) => void }) {
+function Page() {
   const [userSearchInput, setUserSearchInput] = useState<string>('');
+
+  const handleSearchInput = (value: string) => {
+    setUserSearchInput(value);
+  };
 
   return (
     <div className='p-3'>
-      <SearchSection onSearchInput={(value: string) => {
-        setUserSearchInput(value);
-        onSearchInput(value); // Call the parent handler if necessary
-      }} />
+      <SearchSection onSearchInput={handleSearchInput} />
       <TemplateListSection userSearchInput={userSearchInput} />
     </div>
   );
