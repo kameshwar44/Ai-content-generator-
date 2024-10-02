@@ -21,17 +21,34 @@ export interface FORM {
 }
 
 function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) {
-  const [templatesList, setTemplatesList] = useState<typeof Templates>(Templates);
+  const [templatesList, setTemplatesList] = useState<TEMPLATE[]>([]);
+
+  useEffect(() => {
+    // Ensure Templates is of type TEMPLATE[]
+    const typedTemplates: TEMPLATE[] = Templates.map(template => ({
+      ...template,
+      description: template.desc || '',
+      image: template.image || ''
+    }));
+
+    setTemplatesList(typedTemplates);
+  }, []);
 
   useEffect(() => {
     console.log(templatesList);
     if (userSearchInput) {
-      const filteredList = Templates.filter((item: typeof Templates[0]) =>
+      const filteredList = templatesList.filter((item: TEMPLATE) =>
         item.name.toLowerCase().includes(userSearchInput.toLowerCase())
       );
       setTemplatesList(filteredList);
     } else {
-      setTemplatesList(Templates);
+      // Reset to the original list when there's no search input
+      const typedTemplates: TEMPLATE[] = Templates.map(template => ({
+        ...template,
+        description: template.desc || '',
+        image: template.image || ''
+      }));
+      setTemplatesList(typedTemplates);
     }
   }, [userSearchInput]);
 
