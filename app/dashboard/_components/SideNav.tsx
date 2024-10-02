@@ -11,7 +11,7 @@ function SideNav() {
     {
       name: "Dashboard",
       icon: Home,
-      path: "/dashboard",
+      path: "/",
       iconColor: "text-primary",
     },
     {
@@ -36,8 +36,8 @@ function SideNav() {
 
   const path = usePathname();
   useEffect(() => {
-    console.log(path)
-  }, [path])
+    console.log(path);
+  }, [path]);
 
   const handleNavigation = (menuPath: string) => {
     router.push(menuPath);
