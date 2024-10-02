@@ -25,17 +25,17 @@ function TemplateListSection({userSearchInput}:any) {
 
   const [templatesList, setTemplatesList] = useState(Templates)
 
-useEffect(() => {
-  console.log(templatesList)
-  if(userSearchInput){
-    const filteredList = Templates.filter((item:TEMPLATE) => item.name.toLowerCase().includes(userSearchInput.toLowerCase()))
-    setTemplatesList(filteredList)
-  }
-  else{
-    setTemplatesList(Templates)
-  }
+// useEffect(() => {
+//   console.log(templatesList)
+//   if(userSearchInput){
+//     const filteredList = Templates.filter((item:TEMPLATE) => item.name.toLowerCase().includes(userSearchInput.toLowerCase()))
+//     setTemplatesList(filteredList)
+//   }
+//   else{
+//     setTemplatesList(Templates)
+//   }
 
-}, [userSearchInput])
+// }, [userSearchInput])
 
   return (
     
