@@ -5,7 +5,7 @@ import TemplateListSection from './_components/TemplateListSection'
 
 
 
-function page() {
+function page({onSearchInput}:any) {
   const [userSearchInput, setUserSearchInput] = useState<string>()
   return (
     <div className='p-3'>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Templates from "@/app/(data)/Templates"; // Importing the data
+import Templates from "@/app/(data)/Templates";
 import TemplateCard from "./TemplateCard";
 
-// TEMPLATE interface
 export interface TEMPLATE {
   name: string;
   description: string;
@@ -21,44 +20,28 @@ export interface FORM {
   required?: boolean;
 }
 
-function TemplateListSection({ userSearchInput }: { userSearchInput?: string }) {
-  const [templatesList, setTemplatesList] = useState<TEMPLATE[]>([]);
+function TemplateListSection({userSearchInput}:any) {
 
-  // Mapping Templates to the correct structure
-  useEffect(() => {
-    const typedTemplates: TEMPLATE[] = Templates.map(template => ({
-      ...template,
-      description: template.desc || "", // Map 'desc' to 'description'
-      image: template.image || ""       // Ensure 'image' is present
-    }));
 
-    setTemplatesList(typedTemplates);
-  }, []);
+  const [templatesList, setTemplatesList] = useState(Templates)
 
-  // Filter templates based on user input
-  useEffect(() => {
-    if (userSearchInput) {
-      const filteredList = templatesList.filter((item: TEMPLATE) =>
-        item.name.toLowerCase().includes(userSearchInput.toLowerCase())
-      );
-      setTemplatesList(filteredList);
-    } else {
-      // Reset to original list when no search input
-      const typedTemplates: TEMPLATE[] = Templates.map(template => ({
-        ...template,
-        description: template.desc || "", // Map 'desc' to 'description'
-        image: template.image || ""       // Ensure 'image' is present
-      }));
-      setTemplatesList(typedTemplates);
-    }
-  }, [userSearchInput]);
+useEffect(() => {
+  console.log(templatesList)
+  if(userSearchInput){
+    const filteredList = Templates.filter((item:TEMPLATE) => item.name.toLowerCase().includes(userSearchInput.toLowerCase()))
+    setTemplatesList(filteredList)
+  }
+  else{
+    setTemplatesList(Templates)
+  }
 
-  // Render the list of templates
+}, [userSearchInput])
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
-      {templatesList.map((item, index) => (
-        <TemplateCard key={index} {...item} />
-      ))}
+    
+    <div className="  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-5 p-5 gap-5">
+      {templatesList.map((item: TEMPLATE, index: number) => (
+        <TemplateCard key={index} {...item} /> ))}
     </div>
   );
 }
