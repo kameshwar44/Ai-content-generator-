@@ -35,7 +35,7 @@ function CreateNewContent(props: PROPS) {
   const totalUsage = useContext(TotalUsageContext);
   const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
 
-  const selectedTemplate = Templates.find(
+  const selectedTemplate: TEMPLATE | undefined = Templates.find(
     (item) => item.slug === props.params["template-slug"]
   );
   const [loading, setLoading] = useState(false);
