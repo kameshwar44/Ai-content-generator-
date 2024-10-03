@@ -44,7 +44,7 @@ function CreateNewContent(props: PROPS) {
   const { user } = useUser();
 
   const GenerateAIContent = async (formData: any) => {
-    if (Number(totalUsage) >= 10000) {
+    if (typeof totalUsage === 'number' && totalUsage >= 10000) {
       alert("You have reached your credit limit. Please upgrade your plan to continue.");
       return;
     }
