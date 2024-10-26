@@ -11,7 +11,14 @@ import UpdateCreditUsageContext from '@/app/(context)/UpdateCreditUsageContext'
 
 function UsageTrack() {
   const { user } = useUser()
-  const { totalUsage, setTotalUsage } = useContext(TotalUsageContext)
+  const context = useContext(TotalUsageContext);
+
+  // Check if context is defined
+  if (!context) {
+    throw new Error("UsageTrack must be used within a TotalUsageProvider");
+  }
+
+  const { totalUsage, setTotalUsage } = context; // Destructure from context
   const [maxCredits] = useState(10000)
   const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext)
 
