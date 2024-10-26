@@ -30,6 +30,24 @@ interface PROPS {
  * @returns 
  */
 
+// Update the TEMPLATE interface to make description and image optional
+interface TEMPLATE {
+  name: string;
+  desc: string;
+  category: string;
+  icon: string;
+  aiPrompt: string;
+  slug: string;
+  form: Array<{
+    label: string;
+    field: string;
+    name: string;
+    required?: boolean;
+  }>;
+  description?: string; // Make optional
+  image?: string; // Make optional
+}
+
 function CreateNewContent(props: PROPS) {
   const router = useRouter();
   const totalUsage = useContext(TotalUsageContext);
@@ -111,3 +129,10 @@ function CreateNewContent(props: PROPS) {
 }
 
 export default CreateNewContent;
+
+
+
+
+
+
+ 
