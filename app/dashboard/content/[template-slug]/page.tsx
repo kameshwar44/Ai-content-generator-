@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import OutputSection from "../_components/OutputSection";
 import FormSection from "../_components/FormSection";
 import Templates from "@/app/(data)/Templates";
-import { TEMPLATE } from "../../_components/TemplateListSection";
+import { TEMPLATE as ImportedTemplate } from "../../_components/TemplateListSection"; // Renamed import
 import { Button } from "@/components/ui/button";
 import { AlertCircle, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +31,7 @@ interface PROPS {
  */
 
 // Update the TEMPLATE interface to make description and image optional
-interface TEMPLATE {
+interface LocalTemplate { // Renamed local interface
   name: string;
   desc: string;
   category: string;
@@ -53,9 +53,9 @@ function CreateNewContent(props: PROPS) {
   const totalUsage = useContext(TotalUsageContext);
   const { updateCreditUsage, setUpdateCreditUsage } = useContext(UpdateCreditUsageContext);
 
-  const selectedTemplate: TEMPLATE | undefined = Templates.find(
+  const selectedTemplate: ImportedTemplate | undefined = Templates.find(
     (item) => item.slug === props.params["template-slug"]
-  ) as TEMPLATE | undefined; // Type assertion to ensure TypeScript understands the type
+  ) as ImportedTemplate | undefined; // Type assertion to ensure TypeScript understands the type
   const [loading, setLoading] = useState(false);
   
   const [aiOutput, setAiOutput] = useState<string>("");
@@ -114,8 +114,7 @@ function CreateNewContent(props: PROPS) {
       </Link>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6 bg-gray-100">
         <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <FormSection
-            selectedTemplate={selectedTemplate}
+          <FormSection selectedTemplate={selectedTemplate}
             userFormInput={GenerateAIContent}
             loading={loading}
           />
